@@ -8,6 +8,8 @@ André Valter Menezes Leite
 
 Daniel Queiroga Santana Martins
 
+Gabriel de Souza Nascimento
+
 João Roberto Santos Cardoso
 
 Pedro Henrique Freitas Couto
