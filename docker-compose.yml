@@ -1,0 +1,40 @@
+services:
+  mysql:
+    build: ./mysql
+    container_name: mecaniqa-mysql
+    command: sh -c 'chown -R mysql:mysql /var/lib/mysql && mysqld_safe --bind-address=0.0.0.0'
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - mecaniqa-net
+
+  redis:
+    build: ./redis
+    container_name: mecaniqa-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - mecaniqa-net
+
+  api:
+    build: ./app-java
+    container_name: mecaniqa-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - mecaniqa-net
+
+networks:
+  mecaniqa-net:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  redis_data:

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mecaniqa-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mecaniqa-app
+  template:
+    metadata:
+      labels:
+        app: mecaniqa-app
+    spec:
+      containers:
+        - name: api
+          image: mecaniqa-api
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mecaniqa-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: mecaniqa-app
+  ports:
+    - port: 8080
+      targetPort: 8080
