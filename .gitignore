@@ -1,7 +1,0 @@
-.terraform/
-terraform.exe
-*.tfstate
-*.tfstate.*
-*.tfvars
-*.tfplan
-*.tfplan.*
